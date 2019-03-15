@@ -22,6 +22,13 @@ var app = new Vue({
             for (var i =0; i < this.todos.length; i++) {
                 this.todos[i].completed = false;
             };
+        },
+        clearCompleted() {
+            for (var i =0; i < this.todos.length; i++) {
+                if (this.todos[i].completed == true) {
+                    this.todos.splice(i, 1);
+                }
+            }
         }
     },
     computed: {
