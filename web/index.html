@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <input type="text" id="input" v-model="newTask" placeholder="what needs to be done?" @keyup.enter="addTask"
+            size="50">
+        <br>
+        <ul>
+            <li v-for="todo in todos" v-if="buttonNum == 0">
+
+                <input class='toggle' type='checkbox' id='checkbox-{{ todo.index }}' value='{{ todo.index }}'
+                    v-model='todo.completed'>
+                <label for='checkbox-{{ todo.index }}'>{{ todo.text }}</label>
+
+            </li>
+            <li v-for="todo in todos" v-if="buttonNum == 1 && todo.completed == false">
+
+                <input class='toggle' type='checkbox' id='checkbox-{{ todo.index }}' value='{{ todo.index }}'
+                    v-model='todo.completed'>
+                <label for='checkbox-{{ todo.index }}'>{{ todo.text }}</label>
+
+            </li>
+            <li v-for="todo in todos" v-if="buttonNum == 2 && todo.completed == true">
+
+                <input class='toggle' type='checkbox' id='checkbox-{{ todo.index }}' value='{{ todo.index }}'
+                    v-model='todo.completed'>
+                <label for='checkbox-{{ todo.index }}'>{{ todo.text }}</label>
+
+            </li>
+        </ul>
+        <br>
+        <button @click="buttonNum = 0" @click="checkButton">All</button> <button @click="buttonNum = 1">To Do</button> <button
+            @click="buttonNum = 2">Completed</button>
+    </div>
+
+
+
+
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Optional JavaScript -->
+    <script src="js/main.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
