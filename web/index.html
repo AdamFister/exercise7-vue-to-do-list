@@ -22,6 +22,9 @@
             size="50">
         <br>
         <ul>
+
+            <p>Items left to do: {{ countList.length }}</p>
+
             <li v-for="todo in todos" v-if="buttonNum == 0">
 
                 <input class='toggle' type='checkbox' id='checkbox-{{ todo.index }}' value='{{ todo.index }}'
@@ -29,24 +32,27 @@
                 <label for='checkbox-{{ todo.index }}'>{{ todo.text }}</label>
 
             </li>
+
             <li v-for="todo in todos" v-if="buttonNum == 1 && todo.completed == false">
 
-                <input class='toggle' type='checkbox' id='checkbox-{{ todo.index }}' value='{{ todo.index }}'
-                    v-model='todo.completed'>
+                <input class='toggle' @click="addToDo" type='checkbox' id='checkbox-{{ todo.index }}'
+                    value='{{ todo.index }}' v-model='todo.completed'>
                 <label for='checkbox-{{ todo.index }}'>{{ todo.text }}</label>
 
             </li>
+
             <li v-for="todo in todos" v-if="buttonNum == 2 && todo.completed == true">
 
-                <input class='toggle' type='checkbox' id='checkbox-{{ todo.index }}' value='{{ todo.index }}'
-                    v-model='todo.completed'>
+                <input class='toggle' @click="removeToDo" type='checkbox' id='checkbox-{{ todo.index }}'
+                    value='{{ todo.index }}' v-model='todo.completed'>
                 <label for='checkbox-{{ todo.index }}'>{{ todo.text }}</label>
 
             </li>
         </ul>
         <br>
-        <button @click="buttonNum = 0" @click="checkButton">All</button> <button @click="buttonNum = 1">To Do</button> <button
-            @click="buttonNum = 2">Completed</button>
+        <button @click="buttonNum = 0" @click="checkButton">All</button> <button @click="buttonNum = 1">To Do</button>
+        <button @click="buttonNum = 2">Completed</button><br>
+        <button @click="completeAll">Complete All</button><button @click="activeAgain">Re-activate All</button>
     </div>
 
 

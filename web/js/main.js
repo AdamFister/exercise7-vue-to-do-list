@@ -10,10 +10,24 @@ var app = new Vue({
     methods: {
         addTask() {
             this.todos.push({ text: this.newTask, completed: false, index: this.total });
-
             this.total++;
             this.newTask = '';
+        },
+        completeAll() {
+            for (var i =0; i < this.todos.length; i++) {
+                this.todos[i].completed = true;
+            };
+        },
+        activeAgain() {
+            for (var i =0; i < this.todos.length; i++) {
+                this.todos[i].completed = false;
+            };
         }
-
+    },
+    computed: {
+        countList() {
+            return this.todos.filter((todo) => todo.completed == false)
+        }
     }
+
 })
