@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
 
     <div id="app">
         <h1>{{ title }}</h1>
-        <input type="text" id="input" v-model="newTask" placeholder="what needs to be done?" @keyup.enter="addTask"
+        <input type="text" v-model="newTask" placeholder="what needs to be done?" @keyup.enter="addTask"
             size="50">
         <br>
         <ul>
@@ -26,34 +26,35 @@
             <p>Items left to do: {{ countList.length }}</p>
 
             <li v-for="todo in todos" v-if="buttonNum == 0">
-
-                <input class='toggle' type='checkbox' id='checkbox-{{ todo.index }}' value='{{ todo.index }}'
-                    v-model='todo.completed'>
-                <label for='checkbox-{{ todo.index }}'>{{ todo.text }}</label>
+                <!-- checkbox is inehrently a toggle, no need to explicitly declare as such -->
+                <input class='checkbox' type='checkbox' id='checkbox-todo.index' v-model='todo.completed'>
+                <label for='checkbox-todo.index'>{{ todo.text }}</label>
 
             </li>
 
             <li v-for="todo in todos" v-if="buttonNum == 1 && todo.completed == false">
-
-                <input class='toggle' @click="addToDo" type='checkbox' id='checkbox-{{ todo.index }}'
-                    value='{{ todo.index }}' v-model='todo.completed'>
-                <label for='checkbox-{{ todo.index }}'>{{ todo.text }}</label>
+                
+                <input class='checkbox' type='checkbox' id='checkbox-todo.index' v-model='todo.completed'>
+                <label for='checkbox-todo.index'>{{ todo.text }}</label>
 
             </li>
 
             <li v-for="todo in todos" v-if="buttonNum == 2 && todo.completed == true">
 
-                <input class='toggle' @click="removeToDo" type='checkbox' id='checkbox-{{ todo.index }}'
-                    value='{{ todo.index }}' v-model='todo.completed'>
-                <label for='checkbox-{{ todo.index }}'>{{ todo.text }}</label>
+                <input class='checkbox' type='checkbox' id='checkbox-todo.index' v-model='todo.completed'>
+                <label for='checkbox-todo.index'>{{ todo.text }}</label>
 
             </li>
+
         </ul>
         <br>
-        <button @click="buttonNum = 0" @click="checkButton">All</button> <button @click="buttonNum = 1">To Do</button>
-        <button @click="buttonNum = 2">Completed</button><br>
-        <button @click="completeAll">Complete All</button><button @click="activeAgain">Reactivate All</button>
-        <button @click="clearCompleted">Clear Completed</button>
+        <button @click="buttonNum = 0">Show All</button> 
+        <button @click="buttonNum = 1">Show To Do</button>
+        <button @click="buttonNum = 2">Show Completed</button><br>
+
+        <button @click="completeAll()">Complete All</button>
+        <button @click="activeAgain()">Reactivate All</button>
+        <button @click="clearCompleted()">Clear Completed</button>
     </div>
 
 
@@ -63,7 +64,7 @@
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- Optional JavaScript -->
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
