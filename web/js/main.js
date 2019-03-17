@@ -12,6 +12,7 @@ var app = new Vue({
             this.todos.push({ text: this.newTask, completed: false, index: this.total });
             this.total++;
             this.newTask = '';
+            console.log(this.todos[this.total - 1].index);
         },
 
         completeAll() {
@@ -20,6 +21,17 @@ var app = new Vue({
 
         activeAgain() {
             this.todos.map(todo => todo.completed = false);
+        },
+
+        removeElement(num) {
+            //console.log("remove " + num);
+            this.todos.splice(num,1);
+            for (var i = 0; i < this.todos.length; i++) {
+                // console.log("item at " + i);
+                // console.log("old index" + this.todos[i].index);
+                this.todos[i].index = i;
+                // console.log("new index" + this.todos[i].index);
+            }
         },
 
         clearCompleted() {

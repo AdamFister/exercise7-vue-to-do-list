@@ -27,22 +27,23 @@
 
             <li v-for="todo in todos" v-if="buttonNum == 0">
                 <!-- checkbox is inehrently a toggle, no need to explicitly declare as such -->
-                <input class='checkbox' type='checkbox' id='checkbox-todo.index' v-model='todo.completed'>
-                <label for='checkbox-todo.index'>{{ todo.text }}</label>
+                <input class='checkbox' type='checkbox' v-model='todo.completed'>
+                <label for='checkbox'>{{ todo.text }}</label>
+                <button @click="removeElement(todo.index)">Remove</button>
 
             </li>
 
             <li v-for="todo in todos" v-if="buttonNum == 1 && todo.completed == false">
                 
-                <input class='checkbox' type='checkbox' id='checkbox-todo.index' v-model='todo.completed'>
-                <label for='checkbox-todo.index'>{{ todo.text }}</label>
+                <input class='checkbox' type='checkbox' v-model='todo.completed'>
+                <label for='checkbox'>{{ todo.text }}</label>
 
             </li>
 
             <li v-for="todo in todos" v-if="buttonNum == 2 && todo.completed == true">
 
-                <input class='checkbox' type='checkbox' id='checkbox-todo.index' v-model='todo.completed'>
-                <label for='checkbox-todo.index'>{{ todo.text }}</label>
+                <input class='checkbox' type='checkbox' v-model='todo.completed'>
+                <label for='checkbox'>{{ todo.text }}</label>
 
             </li>
 
