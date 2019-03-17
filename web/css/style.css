@@ -6,7 +6,11 @@ body {
 }
 
 h1 {
-    color: grey;
+    color: rgb(4, 121, 199);
+}
+
+h3 {
+    color: rgb(4, 121, 199);
 }
 
 label {

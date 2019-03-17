@@ -18,13 +18,13 @@
 
     <div id="app">
         <h1>{{ title }}</h1>
-        <input type="text" v-model="newTask" placeholder="what needs to be done?" @keyup.enter="addTask"
-            size="50">
+        <input type="text" v-model="newTask" placeholder="what needs to be done?" @keyup.enter="addTask" size="50">
+
         <br>
+        <br>
+        <h3>{{ buttonMessage }}</h3>
+        <p>Items left to do: {{ countList.length }}</p>
         <ul>
-
-            <p>Items left to do: {{ countList.length }}</p>
-
             <li v-for="todo in todos" v-if="buttonNum == 0">
                 <!-- checkbox is inehrently a toggle, no need to explicitly declare as such -->
                 <input class='checkbox' type='checkbox' v-model='todo.completed'>
@@ -34,9 +34,10 @@
             </li>
 
             <li v-for="todo in todos" v-if="buttonNum == 1 && todo.completed == false">
-                
+
                 <input class='checkbox' type='checkbox' v-model='todo.completed'>
                 <label for='checkbox'>{{ todo.text }}</label>
+                <button @click="removeElement(todo.index)">Remove</button>
 
             </li>
 
@@ -44,18 +45,20 @@
 
                 <input class='checkbox' type='checkbox' v-model='todo.completed'>
                 <label for='checkbox'>{{ todo.text }}</label>
+                <button @click="removeElement(todo.index)">Remove</button>
 
             </li>
 
         </ul>
-        <br>
-        <button @click="buttonNum = 0">Show All</button> 
-        <button @click="buttonNum = 1">Show To Do</button>
-        <button @click="buttonNum = 2">Show Completed</button><br>
+        <button @click="setButtonNum0()">Show All</button>
+        <button @click="setButtonNum1()">Show To Do</button>
+        <button @click="setButtonNum2()">Show Completed</button><br>
 
         <button @click="completeAll()">Complete All</button>
         <button @click="activeAgain()">Reactivate All</button>
         <button @click="clearCompleted()">Clear Completed</button>
+        <br>
+
     </div>
 
 
